@@ -8,6 +8,10 @@
 
 ## Version History
 
+### v0.0.2
+
+- Migrated progress from the lunchbox repository.
+
 ### v0.0.1
 
 - Added a base fresh lunchbox project.
