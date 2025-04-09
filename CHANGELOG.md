@@ -8,6 +8,10 @@
 
 ## Version History
 
+### v0.0.4
+
+- Added a fix for the 192x192 and 512x512 favicons.
+
 ### v0.0.3
 
 - Added all favicon files and links.
