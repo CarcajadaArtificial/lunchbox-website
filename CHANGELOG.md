@@ -8,6 +8,10 @@
 
 ## Version History
 
+### v0.0.3
+
+- Added all favicon files and links.
+
 ### v0.0.2
 
 - Migrated progress from the lunchbox repository.
