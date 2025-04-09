@@ -28,6 +28,7 @@ const Particle = (props: { symbol: string; name: string; color: string }) => (
       )}
       href={`https://jsr.io/@lunchbox/ui/doc/particles/~/${props.name}`}
       tabIndex={0}
+      title={`Link to the documentation for the ${props.name} particle.`}
     >
       <div class="text-4xl mt-1/8">{props.symbol}</div>
       <div>{props.name}</div>
@@ -44,6 +45,7 @@ function PeriodicTable() {
           atom.group === "" ? <div class="aspect-square" /> : (
             <a
               href={`https://jsr.io/@lunchbox/ui/doc/atoms/~/${atom.name}`}
+              title={`Link to the documentation for the ${atom.name} atom.`}
               class={cn(
                 focus,
                 atomGroupColors[atom.group],

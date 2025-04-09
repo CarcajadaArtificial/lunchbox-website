@@ -27,6 +27,12 @@ export default function App({ Component }: PageProps) {
         />
         <meta name="apple-mobile-web-app-title" content="Lunchbox" />
         <link rel="manifest" href="/site.webmanifest" />
+
+        {/* SEO */}
+        <meta
+          name="description"
+          content="This is the Lunchbox website source."
+        />
       </head>
       <Body>
         <Component />
