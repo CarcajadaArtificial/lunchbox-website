@@ -2,6 +2,11 @@
 
 ## Version History
 
+### v0.0.7
+
+- Added a Markdown component.
+- Added Lunchbox's readme as content for the home page.
+
 ### v0.0.6
 
 - Added TailwindCSS v4, DiasyUI v5, and Lunchbox v3.
