@@ -1,38 +1,55 @@
 {
-  "version": "0.0.3",
   "tasks": {
-    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "check": "deno fmt --check . && deno lint . && deno check **/*.ts && deno check **/*.tsx",
     "dev": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
     "start": "deno run -A main.ts",
-    "update": "deno run -A -r jsr:@fresh/update .",
-    "update:lunchbox": "deno run -A jsr:@lunchbox/ui/upgrade",
-    "gen-docs": "mkdir data; deno doc --json ../src/particles.ts ../src/atoms.ts ../src/molecules.ts > data/doc.json"
-  },
-  "imports": {
-    "@": "./",
-    "preact": "npm:preact@^10.25.4",
-    "@preact/signals": "npm:@preact/signals@^2.0.1",
-    "tailwindcss": "npm:tailwindcss@^3.4.3",
-    "fresh": "jsr:@fresh/core@^2.0.0-alpha.29",
-    "@fresh/plugin-tailwind": "jsr:@fresh/plugin-tailwind@^0.0.1-alpha.7",
-    "@deno/gfm": "jsr:@deno/gfm@^0.10.0",
-    "@vyn/cn": "jsr:@vyn/cn@^0.1.2",
-    "@carcajada/periodt": "jsr:@carcajada/periodt@^0.0.15",
-    "lunchbox/particles/": "./components/lunchbox/particles/",
-    "lunchbox/atoms/": "./components/lunchbox/atoms/",
-    "lunchbox/molecules/": "./components/lunchbox/molecules/",
-    "@lunchbox/ui": "jsr:@lunchbox/ui"
+    "update": "deno run -A -r jsr:@fresh/update ."
   },
   "lint": {
     "rules": {
-      "tags": ["fresh", "recommended"]
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
     }
   },
-  "exclude": ["**/_fresh/*"],
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+  "exclude": [
+    "**/_fresh/*"
+  ],
+  "imports": {
+    "@/": "./",
+    "@lunchbox/ui": "jsr:@lunchbox/ui@3.0.0",
+    "lunchbox-css": "npm:lunchbox-css@^0.1.3",
+    "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.16",
+    "daisyui": "npm:daisyui@^5.0.37",
+    "fresh": "jsr:@fresh/core@^2.0.0-alpha.34",
+    "@fresh/plugin-tailwind": "jsr:@fresh/plugin-tailwind@^0.0.1-alpha.7",
+    "@pakornv/fresh-plugin-tailwindcss": "jsr:@pakornv/fresh-plugin-tailwindcss@2.0.0-alpha.1",
+    "preact": "npm:preact@^10.26.6",
+    "@preact/signals": "npm:@preact/signals@^2.0.4",
+    "tailwindcss": "npm:tailwindcss@^4.1.7",
+    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.49",
+    "@std/fs": "jsr:@std/fs@^1.0.17"
   },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.asynciterable",
+      "dom.iterable",
+      "deno.ns"
+    ],
+    "jsx": "precompile",
+    "jsxImportSource": "preact",
+    "jsxPrecompileSkipElements": [
+      "a",
+      "img",
+      "source",
+      "body",
+      "html",
+      "head"
+    ]
+  },
+  "lock": false,
   "nodeModulesDir": "auto"
 }

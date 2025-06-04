@@ -1,112 +1,26 @@
-import { cn } from "@vyn/cn";
-import { Footer, Header, Main } from "lunchbox/atoms/Page.tsx";
-import { H0, H1, H2 } from "lunchbox/atoms/Heading.tsx";
-import Link from "lunchbox/atoms/Link.tsx";
-import Markdown from "lunchbox/molecules/Markdown.tsx";
-import focus from "lunchbox/particles/focus.ts";
-// import pkgJson from "../deno.json" with { type: "json" };
-import { define } from "../utils.ts";
-import {
-  atomDocs,
-  atomGroupColors,
-  moleculeDocs,
-  particleDocs,
-  particles,
-  periodicTable,
-} from "../data/atomic_system.ts";
-
-const Particle = (props: { symbol: string; name: string; color: string }) => (
-  <div class="particle-growth">
-    <a
-      class={cn(
-        focus,
-        props.color,
-        "particle",
-        "pt-1/2 w-24 h-24 rounded-full",
-        "flex flex-col items-center",
-        "cursor-pointer",
-      )}
-      href={`https://jsr.io/@lunchbox/ui/doc/particles/~/${props.name}`}
-      tabIndex={0}
-      title={`Link to the documentation for the ${props.name} particle.`}
-    >
-      <div class="text-4xl mt-1/8">{props.symbol}</div>
-      <div>{props.name}</div>
-    </a>
-  </div>
-);
-
-function PeriodicTable() {
-  return (
-    <div class="grid grid-cols-12 gap-1/8 mt-2/1">
-      {periodicTable.map((row) => (
-        row.map((atom) =>
-          // deno-lint-ignore jsx-key
-          atom.group === "" ? <div class="aspect-square" /> : (
-            <a
-              href={`https://jsr.io/@lunchbox/ui/doc/atoms/~/${atom.name}`}
-              title={`Link to the documentation for the ${atom.name} atom.`}
-              class={cn(
-                focus,
-                atomGroupColors[atom.group],
-                "aspect-square rounded",
-                "cursor-pointer",
-                "flex flex-col justify-center items-center",
-                "atom",
-              )}
-              tabIndex={0}
-            >
-              <span>{atom.symbol}</span>
-              {atom.name.split(".").map((name) => (
-                <code class="atom-name">{name}</code>
-              ))}
-            </a>
-          )
-        )
-      ))}
-    </div>
-  );
-}
+import { useSignal } from "@preact/signals";
+import { define } from "@/utils.ts";
+import Counter from "@/islands/Counter.tsx";
+import Logo from "@/components/Logo.tsx";
 
 export default define.page(function Home() {
+  const count = useSignal(3);
+
   return (
-    <>
-      <Header>
-        <div class="col-span-full">
-          <H0 class="text-center">🍱 Lunchbox</H0>
-        </div>
-      </Header>
-      <Main>
-        <div class="col-span-2" />
-        <div class="col-span-8">
-          <H1>UI Kit</H1>
-          <H2 class="mt-1/1">Particles</H2>
-          <Markdown content={particleDocs} />
-          <div class="flex justify-between mt-3/1 gap-1/4">
-            {particles.slice(0, 4).map(Particle)}
+    <main class="layout">
+      <div class="col-span-full mt-2-1">
+        <div class="flex flex-col items-center justify-center">
+          <Logo size={164} />
+          <div class="prose text-center mt-2-1">
+            <h1>Welcome to Fresh Lunchbox</h1>
+            <p>
+              Try updating this message in the
+              <code class="ml-1">./routes/index.tsx</code> file, and refresh.
+            </p>
           </div>
-          <div class="flex justify-around mx-12 gap-1/4 -mt-1/2">
-            {particles.slice(4).map(Particle)}
-          </div>
-          <H2 class="mt-1/1">Atoms</H2>
-          <Markdown content={atomDocs} />
-          <PeriodicTable />
-          <H2 class="mt-1/1">Molecules</H2>
-          <Markdown content={moleculeDocs} />
+          <Counter count={count} />
         </div>
-        <div class="col-span-2" />
-      </Main>
-      <Footer>
-        <div class="col-span-4">
-          @<Link href="https://github.com/CarcajadaArtificial/lunchbox">
-            lunchbox
-          </Link>
-          /
-          <Link href={`https://jsr.io/@lunchbox/ui`}>
-            ui
-          </Link>
-        </div>
-      </Footer>
-    </>
+      </div>
+    </main>
   );
 });

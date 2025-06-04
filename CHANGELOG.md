@@ -1,12 +1,10 @@
 # Changelog
 
-## Working on
-
-- Bringing the /www/ folder from the lunchbox repository.
-
-### Next up
-
 ## Version History
+
+### v0.0.6
+
+- Added TailwindCSS v4, DiasyUI v5, and Lunchbox v3.
 
 ### v0.0.5
 

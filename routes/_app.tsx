@@ -1,15 +1,14 @@
 import type { PageProps } from "fresh";
-import { Body } from "lunchbox/atoms/Page.tsx";
+import Keynav from "../islands/Keynav.tsx";
 
 export default function App({ Component }: PageProps) {
   return (
-    <html lang="en">
+    <html>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>init</title>
+        <title>Lunchbox</title>
         <link rel="stylesheet" href="/styles.css" />
-        <link rel="stylesheet" href="/animation.css" />
 
         {/* Favicon Links */}
         <link
@@ -34,9 +33,10 @@ export default function App({ Component }: PageProps) {
           content="This is the Lunchbox website source."
         />
       </head>
-      <Body>
+      <body>
         <Component />
-      </Body>
+        <Keynav padding={100} />
+      </body>
     </html>
   );
 }
