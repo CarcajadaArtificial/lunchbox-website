@@ -2,6 +2,10 @@
 
 ## Version History
 
+### v0.0.8
+
+- Added a fix for an overflowing content in the Markdown component.
+
 ### v0.0.7
 
 - Added a Markdown component.
