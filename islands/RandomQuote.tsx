@@ -1,12 +1,13 @@
 import { useState } from "preact/hooks";
 import { handleKeyboard, Key } from "@carcajada/teclas";
 
-const quotableUrl = "http://api.quotable.io/random";
+const quoteUrl = "https://thequoteshub.com/api/random-quote";
 
 async function fetchQuote() {
-  const res = await (await fetch(quotableUrl))
+  const res = await (await fetch(quoteUrl))
     .json();
-  return `${res.content} - ${res.author}`;
+  console.log(res);
+  return `${res.text} - ${res.author}`;
 }
 
 export default function () {
@@ -20,9 +21,9 @@ export default function () {
           <h2 class="mb-1-4">Random quote generator</h2>
           <p class="mb-1-1">
             This feed is brought to you by the{" "}
-            <a href="quotable.io">Quotable</a> public API of random quotes:{" "}
-            <code>{quotableUrl}</code> click on quotes or press the{" "}
-            <kbd class="kbd">Enter</kbd>{" "}
+            <a href="https://thequoteshub.com">The Quotes Hub</a>{" "}
+            public API of random quotes: <code>/api/random-quote</code>{" "}
+            click on a quote or press the <kbd class="kbd">Enter</kbd>{" "}
             key when focusing on a quote to remove it.
           </p>
         </div>

@@ -81,26 +81,35 @@ export default function () {
         ))}
       </div>
       <div class="p-1-2 bg-base-200">
-        <div class="join">
+        <form
+          class="join"
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            const input = document
+              .getElementById("gibberish-input") as HTMLInputElement;
+
+            setMessages([{
+              user: 2,
+              content: input.value,
+            }, ...messages]);
+
+            input.value = "";
+          }}
+        >
           <input
             id="gibberish-input"
             class="join-item input input-sm"
             type="text"
+            tabindex={0}
           />
           <button
-            type="button"
+            type="submit"
             class="join-item btn btn-sm"
-            onClick={() =>
-              setMessages([{
-                user: 2,
-                content: (document.getElementById(
-                  "gibberish-input",
-                ) as HTMLInputElement).value,
-              }, ...messages])}
+            tabindex={0}
           >
             Send
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

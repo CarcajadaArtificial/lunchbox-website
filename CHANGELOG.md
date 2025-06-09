@@ -2,6 +2,12 @@
 
 ## Version History
 
+### v0.0.11
+
+- Added a fix for the "Mixed content" error from the quotable API. Changed it to
+  The Quotes Hub.
+- Added extra interactions for for the gibberish chat.
+
 ### v0.0.10
 
 - Added the `<GibberishChat/>` island.
