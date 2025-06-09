@@ -2,6 +2,10 @@
 
 ## Version History
 
+### v0.0.10
+
+- Added the `<GibberishChat/>` island.
+
 ### v0.0.9
 
 - Added the `<RandomQuote/>` island.

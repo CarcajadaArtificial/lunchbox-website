@@ -1,6 +1,7 @@
 import { define } from "@/utils.ts";
 import Logo from "@/components/Logo.tsx";
 import RandomQuote from "@/islands/RandomQuote.tsx";
+import GibberishChat from "../islands/GibberishChat.tsx";
 
 export default define.page(function Home() {
   return (
@@ -16,6 +17,7 @@ export default define.page(function Home() {
         </div>
       </div>
       <RandomQuote />
+      <GibberishChat />
     </main>
   );
 });
