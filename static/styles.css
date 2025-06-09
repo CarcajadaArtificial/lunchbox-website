@@ -8,3 +8,7 @@
 @plugin "daisyui" {
   themes: false;
 }
+
+.dotted {
+  background: var(--gradient-dotted);
+}

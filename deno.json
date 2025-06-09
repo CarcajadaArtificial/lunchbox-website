@@ -19,6 +19,7 @@
   ],
   "imports": {
     "@/": "./",
+    "@carcajada/teclas": "jsr:@carcajada/teclas@^1.0.8",
     "@lunchbox/ui": "jsr:@lunchbox/ui@3.0.0",
     "lunchbox-css": "npm:lunchbox-css@^0.1.4",
     "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.16",

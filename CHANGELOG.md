@@ -2,6 +2,10 @@
 
 ## Version History
 
+### v0.0.9
+
+- Added the `<RandomQuote/>` island.
+
 ### v0.0.8
 
 - Added a fix for an overflowing content in the Markdown component.

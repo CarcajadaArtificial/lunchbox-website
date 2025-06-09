@@ -25,7 +25,7 @@ export default function App({ Component }: PageProps) {
           href="/favicon/apple-touch-icon.png"
         />
         <meta name="apple-mobile-web-app-title" content="Lunchbox" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
 
         {/* SEO */}
         <meta
