@@ -1,65 +1,25 @@
 import { cn } from "@vyn/cn";
 import { useEffect, useState } from "preact/hooks";
-
-interface Message {
-  user: 0 | 1 | 2;
-  content: string;
-}
-
-function generateRandomWord(length: number): string {
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-  }
-  return result;
-}
-
-function generateGibberish(words: number): string {
-  const parts: string[] = [];
-  for (let i = 0; i < words; i++) {
-    const len = Math.floor(Math.random() * 7) + 2;
-    parts.push(generateRandomWord(len));
-  }
-  return parts.join(" ");
-}
-
-function transformSentence(str: string): string {
-  if (str.length === 0) return "";
-  return str.charAt(0).toUpperCase() + str.slice(1) + ".";
-}
-
-const users = [
-  generateRandomWord(2).toUpperCase(),
-  generateRandomWord(2).toUpperCase(),
-  "ME",
-];
+import {
+  generateGibberish,
+  generateRandomWord,
+  transformSentence,
+} from "@/src/utils.ts";
 
 export default function () {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const { messages, loop, userSubmit, clear } = useGibberishChat();
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const seed = Math.random();
-      if (seed >= 0.1) return;
-
-      const simpleSeed = Math.trunc(seed * 100);
-
-      setMessages([{
-        user: simpleSeed % 2 === 0 ? 0 : 1,
-        content: transformSentence(generateGibberish((simpleSeed + 1) * 2)),
-      }, ...messages]);
-    }, 500);
-
-    return () => clearInterval(intervalId);
-  }, [messages]);
+  loop();
 
   return (
     <div class="col-span-full md:col-span-3 lg:col-span-4">
-      <div class="p-1-2 bg-base-200">
-        Gibberish Chat
+      <div class="prose p-1-2 bg-base-200">
+        <h2>Gibberish Group Chat</h2>
       </div>
-      <div class="p-1-2 dotted h-96 overflow-y-scroll flex flex-col-reverse">
+      <div
+        class="p-1-2 bg-dotted h-96 overflow-y-scroll flex flex-col-reverse"
+        tabindex={0}
+      >
         {messages.map((message) => (
           <div
             class={cn("chat", message.user === 2 ? "chat-end" : "chat-start")}
@@ -80,22 +40,8 @@ export default function () {
           </div>
         ))}
       </div>
-      <div class="p-1-2 bg-base-200">
-        <form
-          class="join"
-          onSubmit={(ev) => {
-            ev.preventDefault();
-            const input = document
-              .getElementById("gibberish-input") as HTMLInputElement;
-
-            setMessages([{
-              user: 2,
-              content: input.value,
-            }, ...messages]);
-
-            input.value = "";
-          }}
-        >
+      <div class="p-1-2 bg-base-200 flex justify-between">
+        <form class="join" onSubmit={userSubmit}>
           <input
             id="gibberish-input"
             class="join-item input input-sm"
@@ -110,7 +56,67 @@ export default function () {
             Send
           </button>
         </form>
+        <button
+          tabIndex={0}
+          class="btn btn-sm btn-soft"
+          type="button"
+          onClick={clear}
+        >
+          Clear messages
+        </button>
       </div>
     </div>
   );
+}
+
+interface Message {
+  user: 0 | 1 | 2;
+  content: string;
+}
+
+const users = [
+  generateRandomWord(2).toUpperCase(),
+  generateRandomWord(2).toUpperCase(),
+  "ME",
+];
+
+function useGibberishChat() {
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  return {
+    messages,
+
+    clear: () => setMessages([]),
+
+    loop: () =>
+      useEffect(() => {
+        const intervalId = setInterval(() => {
+          if (messages.length > 20) return;
+          const seed = Math.random();
+          if (seed >= 0.1) return;
+
+          const simpleSeed = Math.trunc(seed * 100);
+
+          setMessages([{
+            user: simpleSeed % 2 === 0 ? 0 : 1,
+            content: transformSentence(generateGibberish((simpleSeed + 1) * 2)),
+          }, ...messages]);
+        }, 500);
+
+        return () => clearInterval(intervalId);
+      }, [messages]),
+
+    userSubmit: (ev: Event) => {
+      ev.preventDefault();
+      const input = document
+        .getElementById("gibberish-input") as HTMLInputElement;
+      if (input.value && input.value.length > 0) {
+        setMessages([{
+          user: 2,
+          content: input.value,
+        }, ...messages]);
+      }
+      input.value = "";
+    },
+  };
 }

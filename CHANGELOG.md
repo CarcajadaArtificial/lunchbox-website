@@ -2,6 +2,12 @@
 
 ## Version History
 
+### v0.0.12
+
+- Started the development for the `<PointlessProcess⁄>` island.
+- Added an experimental implementation of the keynav utility.
+- Minor updates in the `<GibberishChat/>` and `<RandomQuote/>` islands.
+
 ### v0.0.11
 
 - Added a fix for the "Mixed content" error from the quotable API. Changed it to

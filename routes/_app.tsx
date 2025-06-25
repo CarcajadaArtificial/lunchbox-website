@@ -35,7 +35,7 @@ export default function App({ Component }: PageProps) {
       </head>
       <body>
         <Component />
-        <Keynav padding={100} />
+        <Keynav />
       </body>
     </html>
   );

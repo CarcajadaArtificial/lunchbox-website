@@ -16,7 +16,7 @@ export default function () {
 
   return (
     <div class="col-span-full md:col-span-3 lg:col-span-4">
-      <div class="dotted p-1-2 mb-1-1">
+      <div class="bg-dotted p-1-2 mb-1-1">
         <div class="prose">
           <h2 class="mb-1-4">Random quote generator</h2>
           <p class="mb-1-1">
