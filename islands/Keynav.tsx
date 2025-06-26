@@ -37,67 +37,50 @@ function findCandidate(
     max: currentRect.right + padding,
   };
 
-  let closest: HTMLElement | null = null;
-  let minDistance = Infinity;
+  type Entry = { el: HTMLElement; distance: number };
+  const entries: Entry[] = [];
 
   for (const el of candidates) {
     if (el === current) continue;
     const rect = el.getBoundingClientRect();
-    let distance: number = Infinity;
+    let distance = Infinity;
+    let ok = false;
 
     switch (direction) {
       case "ArrowRight":
-        if (
-          rect.left > currentRect.right &&
-          overlaps(rect.top, rect.bottom, paddedY.min, paddedY.max)
-        ) {
-          distance = rect.left - currentRect.right;
-        } else {
-          continue;
-        }
+        ok = rect.left > currentRect.right &&
+          overlaps(rect.top, rect.bottom, paddedY.min, paddedY.max);
+        if (ok) distance = rect.left - currentRect.right;
         break;
-
       case "ArrowLeft":
-        if (
-          rect.right < currentRect.left &&
-          overlaps(rect.top, rect.bottom, paddedY.min, paddedY.max)
-        ) {
-          distance = currentRect.left - rect.right;
-        } else {
-          continue;
-        }
+        ok = rect.right < currentRect.left &&
+          overlaps(rect.top, rect.bottom, paddedY.min, paddedY.max);
+        if (ok) distance = currentRect.left - rect.right;
         break;
-
       case "ArrowDown":
-        if (
-          rect.top > currentRect.bottom &&
-          overlaps(rect.left, rect.right, paddedX.min, paddedX.max)
-        ) {
-          distance = rect.top - currentRect.bottom;
-        } else {
-          continue;
-        }
+        ok = rect.top > currentRect.bottom &&
+          overlaps(rect.left, rect.right, paddedX.min, paddedX.max);
+        if (ok) distance = rect.top - currentRect.bottom;
         break;
-
       case "ArrowUp":
-        if (
-          rect.bottom < currentRect.top &&
-          overlaps(rect.left, rect.right, paddedX.min, paddedX.max)
-        ) {
-          distance = currentRect.top - rect.bottom;
-        } else {
-          continue;
-        }
+        ok = rect.bottom < currentRect.top &&
+          overlaps(rect.left, rect.right, paddedX.min, paddedX.max);
+        if (ok) distance = currentRect.top - rect.bottom;
         break;
     }
 
-    if (distance < minDistance) {
-      minDistance = distance;
-      closest = el;
-    }
+    if (ok) entries.push({ el, distance });
   }
 
-  return closest;
+  if (entries.length === 0) return null;
+
+  // pick the entry with the smallest distance
+  let best = entries[0];
+  for (const e of entries) {
+    if (e.distance < best.distance) best = e;
+  }
+
+  return best.el;
 }
 
 function resetShake(el: HTMLElement, exclude?: ShakeClass) {

@@ -44,7 +44,7 @@ export default function () {
         <form class="join" onSubmit={userSubmit}>
           <input
             id="gibberish-input"
-            class="join-item input input-sm"
+            class="join-item input input-sm mr-px"
             type="text"
             tabindex={0}
           />

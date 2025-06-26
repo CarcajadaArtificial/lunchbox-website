@@ -2,7 +2,9 @@ import { define } from "@/utils.ts";
 import Logo from "@/components/Logo.tsx";
 import RandomQuote from "@/islands/RandomQuote.tsx";
 import GibberishChat from "@/islands/GibberishChat.tsx";
-// import PointlessProcess from "@/islands/PointlessProcess.tsx";
+import PointlessProcess from "@/islands/PointlessProcess.tsx";
+import Counter from "@/islands/Counter.tsx";
+import { useSignal } from "@preact/signals";
 
 export default define.page(function Home() {
   return (
@@ -19,13 +21,18 @@ export default define.page(function Home() {
           </div>
         </div>
         <div class="col-span-full">
-          <a class="btn btn-small btn-soft" tabindex={0}>
+          <a
+            href="https://github.com/CarcajadaArtificial/lunchbox/discussions/12"
+            class="btn btn-small btn-soft"
+            tabindex={0}
+          >
             Suggest a widget
           </a>
         </div>
-        <RandomQuote />
+        <Counter count={useSignal(3)} />
         <GibberishChat />
-        {/* <PointlessProcess /> */}
+        <RandomQuote />
+        <PointlessProcess />
       </main>
       <div class="bg-dotted">
         <footer class="footer layout min-h-36 py-2-1">
@@ -34,6 +41,7 @@ export default define.page(function Home() {
             <a
               class="link link-hover"
               href="https://github.com/CarcajadaArtificial/lunchbox"
+              tabindex={0}
             >
               GitHub
             </a>

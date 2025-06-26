@@ -16,12 +16,15 @@ export default function () {
 
   return (
     <div class="col-span-full md:col-span-3 lg:col-span-4">
+      <div class="prose p-1-2 bg-base-200">
+        <h2>Random quote generator</h2>
+      </div>
       <div class="bg-dotted p-1-2 mb-1-1">
         <div class="prose">
-          <h2 class="mb-1-4">Random quote generator</h2>
           <p class="mb-1-1">
             This feed is brought to you by the{" "}
-            <a href="https://thequoteshub.com">The Quotes Hub</a>{" "}
+            <a tabIndex={0} href="https://thequoteshub.com">The Quotes Hub</a>
+            {" "}
             public API of random quotes: <code>/api/random-quote</code>{" "}
             click on a quote or press the <kbd class="kbd">Enter</kbd>{" "}
             key when focusing on a quote to remove it.

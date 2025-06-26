@@ -2,6 +2,12 @@
 
 ## Version History
 
+### v0.0.13
+
+- Added the `<PointlessProcess⁄>`, `<Countdown⁄>`, and `<ImageModal⁄>` islands.
+- Minor updates in the `<Counter/>`, `<GibberishChat/>`, and `<RandomQuote/>`
+  islands.
+
 ### v0.0.12
 
 - Started the development for the `<PointlessProcess⁄>` island.
