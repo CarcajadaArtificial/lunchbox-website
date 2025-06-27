@@ -2,6 +2,11 @@
 
 ## Version History
 
+### v0.0.14
+
+- Added updated versions for the `lunchbox-css` and `@lunchbox/ui` modules.
+- Added shields, links, and keyboard navigation instructions.
+
 ### v0.0.13
 
 - Added the `<PointlessProcess⁄>`, `<Countdown⁄>`, and `<ImageModal⁄>` islands.

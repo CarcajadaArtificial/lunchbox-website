@@ -19,7 +19,7 @@ export default function () {
       <div class="prose p-1-2 bg-base-200">
         <h2>Random quote generator</h2>
       </div>
-      <div class="bg-dotted p-1-2 mb-1-1">
+      <div class="bg-dotted p-1-2">
         <div class="prose">
           <p class="mb-1-1">
             This feed is brought to you by the{" "}
@@ -43,23 +43,27 @@ export default function () {
           Give me a quote!
         </button>
       </div>
-      <div class="stack w-full">
-        {isLoading ? <div class="skeleton min-h-16"></div> : null}
-        {quotes.map((quote, i) => (
-          <div
-            class="bg-base-200 border border-base-300 p-1-2 rounded cursor-pointer"
-            key={i}
-            tabindex={i === 0 ? 0 : -1}
-            onClick={() => setQuotes(quotes.slice(1))}
-            onKeyUp={handleKeyboard([{
-              keys: [Key.Enter],
-              cb: () => setQuotes(quotes.slice(1)),
-            }])}
-          >
-            {quote}
+      {quotes.length > 0 || isLoading
+        ? (
+          <div class="stack w-full mt-1-1">
+            {isLoading ? <div class="skeleton min-h-16"></div> : null}
+            {quotes.map((quote, i) => (
+              <div
+                class="bg-base-200 border border-base-300 p-1-2 rounded cursor-pointer"
+                key={i}
+                tabindex={i === 0 ? 0 : -1}
+                onClick={() => setQuotes(quotes.slice(1))}
+                onKeyUp={handleKeyboard([{
+                  keys: [Key.Enter],
+                  cb: () => setQuotes(quotes.slice(1)),
+                }])}
+              >
+                {quote}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        )
+        : null}
     </div>
   );
 }
